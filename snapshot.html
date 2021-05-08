@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- <script src="./js/axios.min.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css">
+
+
+        <script src="./js/cropper.min.js"></script>
+
+        <style>
+            body {
+                text-align: center;
+                margin: 0;
+                padding: 0;
+            }
+
+            .image-container {
+                height: 50em;
+                margin: 1em 0 0 0;
+            }
+
+            img {
+                max-width: 100%;
+            }
+
+            .btn-container {
+                margin: 0;
+            }
+
+            .btn {
+                font-size: 1.2rem;
+                background-color: rgb(26, 158, 235);
+                border: none;
+                color: white;
+                padding: 0.6em;
+                cursor: pointer;
+                float: right;
+                /* margin: 0 0.5em; */
+            }
+
+            .btn:hover {
+                background-color: rgb(160, 212, 255);
+            }
+
+        </style>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="image-container" id="imageCont">
+            <img src="" alt="" />
+
+        </div>
+
+        <div class=" btn-container">
+            <button id="search" class="btn">Search</button>
+        </div>
+
+        <script src="./js/main.js"></script>
+    </body>
+
+</html>
