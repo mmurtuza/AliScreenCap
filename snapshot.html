@@ -4,9 +4,6 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!-- <script src="./js/axios.min.js"></script> -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css">
 
 
@@ -20,8 +17,8 @@
             }
 
             .image-container {
-                height: 50em;
-                margin: 1em 0 0 0;
+                height: 100%;
+                margin: 0 0 0 0;
             }
 
             img {
@@ -30,25 +27,46 @@
 
             .btn-container {
                 margin: 0;
+                position: fixed;
+                /* bottom: 30px;
+                right: 40px; */
+                color: #000;
+                text-align: center;
+                box-shadow: 2px 2px 3px #333;
+                border-radius: 2rem;
+                background-color: #C0C0C0;
             }
 
             .btn {
-                font-size: 1.2rem;
-                background-color: rgb(26, 158, 235);
                 border: none;
-                color: white;
-                padding: 0.6em;
+                padding: 0.5em;
                 cursor: pointer;
                 float: right;
-                /* margin: 0 0.5em; */
+                margin: 0 0.5em;
+                background: transparent;
+                height: 2rem;
+                width: 2rem;
+                color: #000;
+                background-repeat: no-repeat;
+                background-position: center;
+                border-radius: 50%;
             }
 
+            /* 
             .btn:hover {
                 background-color: rgb(160, 212, 255);
+            } */
+
+            .icon-search {
+                background-image: url('./search_black_24dp.svg');
+            }
+
+            .icon-undo {
+                background-image: url('./undo_black_24dp.svg');
             }
 
         </style>
-        <title>Document</title>
+        <title>Document</title><!-- change it -->
     </head>
 
     <body>
@@ -57,8 +75,9 @@
 
         </div>
 
-        <div class=" btn-container">
-            <button id="search" class="btn">Search</button>
+        <div class=" btn-container" style="display: none;">
+            <button id="search" class="btn icon-search"></button>
+            <button id="undo" class="btn icon-undo"></button>
         </div>
 
         <script src="./js/main.js"></script>

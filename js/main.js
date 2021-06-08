@@ -1,6 +1,8 @@
 const imageContainer = document.querySelector('.image-container');
 const image = imageContainer.getElementsByTagName('img').item(0);
 const searchBtn = document.getElementById("search");
+const undoBtn = document.getElementById("undo");
+const parentEle = document.getElementsByClassName('btn-container')[0];
 var cropper;
 
 chrome.runtime.sendMessage({ from: "urlRequest" });
@@ -20,11 +22,34 @@ searchBtn.addEventListener("click", () => {
     search();
 })
 
+undoBtn.addEventListener("click", () => {
+    cropper.clear()
+
+    parentEle.setAttribute('style', 'display: none;');
+})
 function initializeCropper(img) {
     if (cropper) {
         cropper.destroy();
     }
-    cropper = new Cropper(img);
+    cropper = new Cropper(img, {
+        autoCrop: false,
+        scalable: false,
+        zoomable: false,
+        background: false,
+        ready() {
+            console.log('cropper ready');
+        },
+        cropend(event) {
+
+            let properties = 'left: ' + (event.detail.originalEvent.x - 100) + 'px; top:' + event.detail.originalEvent.y + 'px;';
+
+            parentEle.removeAttribute("style");
+            parentEle.setAttribute('style', properties);
+
+        },
+    });
+
+
 }
 
 
@@ -49,38 +74,15 @@ function search() {
         })
         .then(res => res.json())
         .then(function (data) {
-            // console.log(data) // for debugging
-            // console.log(data.secure_url)// for debugging
-            // console.log(btoa(data.secure_url))// for debugging
+
             var b64 = btoa(data.secure_url);
             var urlToGo = "https://aliimagesearch.com/image?imageData=" + b64 + ""
             window.open(
-                urlToGo, "_blank"
+                urlToGo, '_self'
             )
         })
         .catch(function (err) {
             console.log(err);
         });
-
-    // axios({
-    //     url: cd_url,
-    //     method: "POST",
-    //     headers: {
-    //         "Content-Type": "application/x-www-form-urlencoded",
-    //     },
-    //     data: formData,
-    // })
-    //     .then(function (res) {
-    //         // console.log(res) // for debugging
-    //         // console.log(res.data.secure_url)// for debugging
-    //         var urlToGo = "https://aliimagesearch.com/image?imageData=" + btoa(res.data.secure_url) + ""
-    //         window.open(
-    //             urlToGo, "_blank"
-    //         )
-    //     })
-    //     .catch(function (err) {
-    //         console.log(err);
-    //     });
-
 
 }
